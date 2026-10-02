@@ -1,57 +1,61 @@
-# mcdonalds-menu-2026-data-analysis
-Data analysis and visualization of the McDonald's Menu 2026 dataset, focusing on price, calories, nutrition, data quality, and exploratory analysis.
-
 # McDonald's Menu 2026 — Data Analysis & Visualization
 
-## Présentation
+Projet de Data Analysis réalisé dans le cadre de la **Cohorte 2 — Data Science de l'Akieni Academy**.
 
-Ce repository présente un projet d'analyse de données réalisé dans le cadre de la **Cohorte 2 — Data Science de l'Akieni Academy**.
+## 1. Contexte
 
-Le projet porte sur un dataset consacré au **menu McDonald's 2026**. Il vise à analyser les relations entre le prix, les calories et les caractéristiques nutritionnelles des produits.
+L'équipe Data Analytics reçoit un jeu de données portant sur le **menu McDonald's 2026**.
 
-L'objectif est de mettre en pratique une démarche complète de **Data Analyst**, depuis la compréhension et l'audit des données jusqu'à l'analyse exploratoire, la visualisation et l'interprétation des résultats.
+La mission consiste à explorer la structure du menu, évaluer la qualité des données, analyser les prix et les informations nutritionnelles, puis construire des visualisations permettant de mettre en évidence les tendances, différences entre catégories et relations entre variables.
 
----
+Le projet applique une démarche de Data Analyst :
 
-## Contexte du projet
-
-**Programme :** Akieni Academy
-**Parcours :** Data Science
-**Cohorte :** Cohorte 2
-**Projet :** Projet Freestyle — EDA & Data Visualization
-
-Ce projet permet de mettre en pratique plusieurs compétences acquises au cours du parcours :
-
-* Python
-* Pandas
-* NumPy
-* Data Quality
-* Data Cleaning
-* Exploratory Data Analysis (EDA)
-* Data Visualization
-* Interprétation des données
+> **Comprendre → Auditer → Investiguer → Décider → Analyser → Visualiser → Interpréter**
 
 ---
 
-## Problématique
+## 2. Problématique
 
-> **Existe-t-il des relations observables entre le prix, les calories et les caractéristiques nutritionnelles des produits du menu ?**
-
-Cette problématique est étudiée à travers plusieurs axes :
-
-* distribution des prix ;
-* distribution des calories ;
-* répartition des produits par catégorie ;
-* relation entre prix et calories ;
-* relation entre prix et protéines ;
-* comportement des variables nutritionnelles ;
-* identification des observations atypiques.
+> **Que nous apprennent les données du menu McDonald's 2026 sur la relation entre le prix, les calories et les caractéristiques nutritionnelles des produits ?**
 
 ---
 
-## Démarche analytique
+## 3. Objectifs
 
-Le projet suit une démarche structurée :
+Le projet vise à :
+
+* comprendre la structure et le contenu du dataset ;
+* évaluer sa qualité : types, valeurs manquantes, doublons, valeurs atypiques et incohérences ;
+* décrire la composition du menu et ses catégories ;
+* analyser les distributions de prix et de calories ;
+* explorer les variables nutritionnelles disponibles ;
+* étudier les relations entre prix, calories et autres variables numériques ;
+* identifier les produits atypiques et distinguer anomalie potentielle et observation réelle ;
+* créer des indicateurs dérivés lorsque cela est justifié ;
+* construire une narration visuelle claire ;
+* formuler une synthèse fondée sur les résultats réellement calculés.
+
+---
+
+## 4. Questions d'analyse
+
+| Axe               | Question principale                                                                                |
+| ----------------- | -------------------------------------------------------------------------------------------------- |
+| **Compréhension** | Combien de produits ? Quelles catégories ? Comment le menu est-il réparti ?                        |
+| **Qualité**       | Les données sont-elles complètes, cohérentes et correctement structurées ?                         |
+| **Prix**          | Comment les prix sont-ils distribués et quelles différences observe-t-on entre catégories ?        |
+| **Calories**      | Comment les calories sont-elles distribuées et quelles différences observe-t-on entre catégories ? |
+| **Nutrition**     | Quelles variables nutritionnelles sont disponibles et comment se répartissent-elles ?              |
+| **Relations**     | Existe-t-il une association entre prix, calories et variables nutritionnelles ?                    |
+| **Atypiques**     | Quels produits s'écartent fortement du comportement général ?                                      |
+| **Visualisation** | Quels graphiques permettent de répondre le plus clairement aux questions ?                         |
+| **Synthèse**      | Quels constats peut-on retenir sans dépasser ce que les données permettent d'affirmer ?            |
+
+---
+
+## 5. Démarche analytique
+
+L'analyse est réalisée progressivement :
 
 ```text
 Données brutes
@@ -60,13 +64,13 @@ Data Understanding
       ↓
 Data Quality Audit
       ↓
-Identification des observations à investiguer
+Investigation des observations suspectes
       ↓
 Data Cleaning & Decision
       ↓
-Validation après nettoyage
+Validation
       ↓
-Exploratory Data Analysis
+EDA
       ↓
 Data Visualization
       ↓
@@ -75,51 +79,26 @@ Interprétation
 Synthèse
 ```
 
-Cette organisation permet de distinguer clairement :
-
-* les constats issus des données ;
-* les observations nécessitant une investigation ;
-* les décisions de nettoyage ;
-* les résultats de l'analyse.
+Une observation suspecte n'est pas automatiquement corrigée. Toute décision de nettoyage doit être précédée d'une inspection de la donnée, d'une vérification de sa cohérence métier et, lorsque cela est possible, d'un contrôle de sa source.
 
 ---
 
-## Data Understanding & Data Quality Audit
+## 6. Data Quality
 
-Avant toute modification des données, un audit qualité est réalisé.
+L'audit porte notamment sur :
 
-Les contrôles portent notamment sur :
+* les dimensions et types de données ;
+* les valeurs manquantes ;
+* les doublons ;
+* l'unicité de `item_id` ;
+* les valeurs négatives et nulles ;
+* les chaînes vides ;
+* les variables booléennes ;
+* les structures JSON ;
+* les variables calculées ;
+* les règles de cohérence nutritionnelle.
 
-| Domaine             | Contrôle                     |
-| ------------------- | ---------------------------- |
-| Structure           | Dimensions du dataset        |
-| Types               | Types des variables          |
-| Complétude          | Valeurs manquantes           |
-| Unicité             | Doublons                     |
-| Identifiant         | `item_id`                    |
-| Prix                | Valeurs `<= 0`               |
-| Calories            | Valeurs `<= 0`               |
-| Nutrition           | Valeurs négatives            |
-| Texte               | Chaînes vides                |
-| Booléens            | Modalités                    |
-| JSON                | Structure de `price_history` |
-| Variables calculées | Cohérence des formules       |
-
-### Principe de qualité des données
-
-> **L'absence de valeurs manquantes ne signifie pas nécessairement que les données sont de bonne qualité.**
-
-Une donnée peut être complète tout en présentant une valeur incompatible avec sa signification métier, une incohérence entre plusieurs variables ou une erreur dans une variable calculée.
-
-L'audit permet donc d'identifier les points nécessitant une investigation avant de procéder au nettoyage.
-
----
-
-## Validation des données nutritionnelles
-
-Les variables nutritionnelles sont confrontées à des règles métier.
-
-Exemples :
+Exemples de contraintes nutritionnelles :
 
 ```text
 total_fat_g >= 0
@@ -132,7 +111,7 @@ protein_g >= 0
 calories >= 0
 ```
 
-Certaines relations entre variables sont également contrôlées :
+Certaines relations sont également contrôlées :
 
 ```text
 saturated_fat_g <= total_fat_g
@@ -140,102 +119,67 @@ trans_fat_g <= total_fat_g
 sugars_g <= total_carbs_g
 ```
 
-Ces règles permettent d'identifier les observations qui doivent être examinées.
-
-Une violation de règle ne conduit pas automatiquement à une correction.
+Les règles détaillées sont documentées dans `docs/data_quality_rules.md`.
 
 ---
 
-## Data Cleaning & Decision
+## 7. Analyse et visualisation
 
-La démarche de nettoyage repose sur le principe suivant :
+L'EDA porte principalement sur :
 
-```text
-Voir la ligne concernée
-        ↓
-Comprendre le produit
-        ↓
-Vérifier la cohérence métier
-        ↓
-Examiner la source si disponible
-        ↓
-Prendre une décision
-        ↓
-Appliquer le traitement
-        ↓
-Vérifier après nettoyage
-        ↓
-Documenter la décision
-```
+* la composition du menu ;
+* les catégories ;
+* les prix ;
+* les calories ;
+* les variables nutritionnelles ;
+* les relations entre variables ;
+* les observations atypiques.
 
-L'objectif est d'éviter les corrections automatiques qui pourraient modifier les données sans justification.
+Les visualisations peuvent inclure des histogrammes, boxplots, barplots, scatterplots et heatmaps.
 
-Lorsque cela est nécessaire, les valeurs originales sont conservées afin de garantir la traçabilité des transformations.
+Chaque graphique doit répondre à une question analytique et être accompagné d'une interprétation proportionnée aux données.
+
+> **Une association observée entre deux variables ne constitue pas automatiquement une relation de causalité.**
 
 ---
 
-## Exploratory Data Analysis
+## 8. Source des données
 
-L'analyse exploratoire cherche notamment à répondre aux questions suivantes :
+**Source :** Kaggle — *McDonald's Menu Prices and Nutrition 2026*
 
-* Comment les prix sont-ils distribués ?
-* Comment les calories sont-elles distribuées ?
-* Comment les produits sont-ils répartis entre les catégories ?
-* Existe-t-il une relation entre prix et calories ?
-* Existe-t-il une relation entre prix et protéines ?
-* Quelles variables nutritionnelles sont associées aux calories ?
-* Quels produits présentent des comportements atypiques ?
+Le fichier CSV fourni constitue la **source de vérité** pour les noms de colonnes, les types, les valeurs et la structure du dataset.
+
+Les variables utilisées dans l'analyse sont donc vérifiées directement à partir du fichier fourni, sans supposer l'existence de variables absentes du dataset.
 
 ---
 
-## Data Visualization
+## 9. Notebook principal
 
-Les visualisations sont utilisées pour faciliter l'exploration et l'interprétation des données.
-
-Les graphiques peuvent notamment inclure :
-
-* histogrammes ;
-* boxplots ;
-* barplots ;
-* scatterplots ;
-* heatmaps ;
-* comparaisons entre catégories.
-
-Chaque visualisation est associée à une question analytique.
-
-> **Un graphique doit apporter une information utile à l'analyse et non être produit uniquement pour représenter les données.**
-
----
-
-## Notebook principal
-
-L'ensemble de la démarche est centralisé dans un notebook unique :
+L'ensemble du projet est centralisé dans un notebook unique :
 
 ```text
 notebooks/
 └── mcdonalds_menu_2026_data_analysis.ipynb
 ```
 
-Le notebook suit l'ordre logique :
+Il est organisé selon les étapes suivantes :
 
 ```text
-1. Data Loading
-2. Data Understanding
-3. Data Quality Audit
-4. Validation des règles métier
-5. Data Cleaning & Decision
-6. Validation après nettoyage
-7. Exploratory Data Analysis
-8. Data Visualization
-9. Interprétation
-10. Conclusion
+01. Chargement des données
+02. Data Understanding
+03. Data Quality Audit
+04. Validation des règles métier
+05. Data Cleaning & Decision
+06. Validation après nettoyage
+07. Exploratory Data Analysis
+08. Data Visualization
+09. Interprétation
+10. Synthèse finale
 ```
-
-Cette organisation permet de suivre l'intégralité du raisonnement analytique dans un même document.
 
 ---
 
-## Structure du repository
+## 10. Structure du repository
 
 ```text
 mcdonalds-menu-2026-data-analysis/
@@ -264,53 +208,33 @@ mcdonalds-menu-2026-data-analysis/
 
 ---
 
-## Documentation
+## 11. Documentation
 
-Le dossier `docs/` contient les éléments permettant de comprendre le projet au-delà du code :
+Le dossier `docs/` contient les éléments complémentaires du projet :
 
-| Document                | Contenu                                         |
-| ----------------------- | ----------------------------------------------- |
-| `cahier_des_charges.md` | Contexte, objectifs, problématique et périmètre |
-| `data_dictionary.md`    | Description et signification des variables      |
-| `data_quality_rules.md` | Règles de validation des données                |
-| `cleaning_decisions.md` | Décisions et justifications liées au nettoyage  |
+| Fichier                 | Contenu                                  |
+| ----------------------- | ---------------------------------------- |
+| `cahier_des_charges.md` | Contexte, problématique et objectifs     |
+| `data_dictionary.md`    | Description des variables                |
+| `data_quality_rules.md` | Règles de contrôle qualité               |
+| `cleaning_decisions.md` | Décisions et justifications de nettoyage |
 
 ---
 
-## Technologies utilisées
+## 12. Prérequis
+
+### Technologies
 
 * Python 3
+* Jupyter Notebook
 * Pandas
 * NumPy
 * Matplotlib
 * Seaborn
-* Jupyter Notebook
 * Git
 * GitHub
 
----
-
-## Reproduire le projet
-
-Cloner le repository :
-
-```bash
-git clone <URL_DU_REPOSITORY>
-```
-
-Créer un environnement Python :
-
-```bash
-python -m venv .venv
-```
-
-Activer l'environnement sous Windows :
-
-```bash
-.venv\Scripts\activate
-```
-
-Installer les dépendances :
+### Installation
 
 ```bash
 pip install -r requirements.txt
@@ -330,25 +254,15 @@ notebooks/mcdonalds_menu_2026_data_analysis.ipynb
 
 ---
 
-## Objectif pédagogique
+## 13. Objectif pédagogique
 
-Ce projet a pour objectif de mettre en pratique la démarche d'un **Data Analyst** dans le cadre de la **Cohorte 2 — Data Science de l'Akieni Academy**.
+Ce projet constitue une mise en pratique du parcours **Data Science — Cohorte 2 de l'Akieni Academy**.
 
-L'accent est mis autant sur le raisonnement que sur le code :
-
-> **Comprendre → Auditer → Investiguer → Décider → Nettoyer → Vérifier → Analyser → Visualiser → Interpréter**
-
-Cette démarche vise à produire une analyse :
-
-* compréhensible ;
-* reproductible ;
-* documentée ;
-* justifiable ;
-* cohérente avec les règles métier.
+L'objectif est de développer une analyse structurée, reproductible et documentée, en accordant autant d'importance au **raisonnement analytique** qu'au code et aux visualisations.
 
 ---
 
-## Statut du projet
+## 14. Statut
 
 **Projet en cours de développement.**
 
@@ -359,8 +273,6 @@ Les différentes étapes de l'analyse sont progressivement complétées et docum
 ## Auteur
 
 **Trésor KITWANDA**
-
-Data Analyst — Data Science Learner
 
 **Akieni Academy — Cohorte 2 Data Science**
 
